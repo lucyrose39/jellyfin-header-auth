@@ -30,7 +30,7 @@ public class AuthController : ControllerBase
     [Produces(MediaTypeNames.Application.Json)]
     public async Task<ActionResult> Auth()
     {
-        if (Request.Headers.TryGetValue("X-Forwarded-UserName", out var headerUsername)) {
+        if (Request.Headers.TryGetValue("X-Token-Subject", out var headerUsername)) {
             var authenticationResult = await Authenticate(headerUsername).ConfigureAwait(false);
             return Ok(authenticationResult);
         }
